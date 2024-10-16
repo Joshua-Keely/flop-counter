@@ -5,18 +5,22 @@ app.secret_key = 'secret'
 
 @app.route('/')
 def index():
-    if 'counter' not in session:
-        session['counter'] = 0
-    return render_template('index.html')
+    with open('value.txt', 'r') as f:
+        counter = f.read()
+    return render_template('index.html', counter=counter)
 
 @app.route('/add', methods=['POST'])
 def add():
     session['counter'] += 1
+    with open('value.txt', 'w') as f:
+        f.write(str(session['counter']))
     return redirect(url_for('index'))
 
 @app.route('/subtract', methods=['POST'])
 def subtract():
     session['counter'] -= 1
+    with open('value.txt', 'w') as f:
+        f.write(str(session['counter']))
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
