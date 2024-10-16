@@ -6,15 +6,22 @@
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <body>
-    <h1>Bienvenue sur le Flop Counter</h1>
-    <h2>Counter: <span id="counter">{{ counter }}</span></h2>
-    <form onsubmit="event.preventDefault(); add();">
-        <input type="submit" value="Increase">
-    </form>
-    <form onsubmit="event.preventDefault(); subtract();">
-        <input type="submit" value="Decrease">
-    </form>
+    <div class="container">
+        <h1>Bienvenue sur le Flop Counter</h1>
+        <h2><span id="counter">{{ counter }}</span></h2>
+        <div class="buttons">
+            <form onsubmit="event.preventDefault(); add();">
+                <input type="submit" value="+1 flop">
+            </form>
+            <form onsubmit="event.preventDefault(); subtract();">
+                <input type="submit" value="-1 flop">
+            </form>
+        </div>
+    </div>
 </body>
+<footer>
+    Developed by <a href="https://joshuakeely.live">Joshua Keely</a>
+</footer>
 <script>
     function add() {
         $.post("/add", function(data) {
