@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flop Counter</title>
+</head>
+<body>
+    <h1>Bienvenue sur le Flop Counter</h1>
+    <h2>Counter: {{ session['counter'] }}</h2>
+    <form action="{{ url_for('add') }}" method="post">
+        <input type="submit" value="Increase">
+    </form>
+    <form action="{{ url_for('subtract') }}" method="post">
+        <input type="submit" value="Decrease">
+    </form>
+</body>
+</html>
