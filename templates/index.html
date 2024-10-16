@@ -10,13 +10,20 @@
         <h1>Bienvenue sur le Flop Counter</h1>
         <h2><span id="counter">{{ counter }}</span></h2>
         <div class="buttons">
-            <form onsubmit="event.preventDefault(); add();">
-                <input type="submit" value="+1 flop">
-            </form>
             <form onsubmit="event.preventDefault(); subtract();">
                 <input type="submit" value="-1 flop">
+                <span id="firework" style="display: none;">🔥</span>
+            </form>
+            <form onsubmit="event.preventDefault(); add();">
+                <input type="submit" value="+1 flop">
+                <span id="thumbs-down" style="display: none;">👎</span>
             </form>
         </div>
+        <br>
+        <p>Barre de progréssion des flops (objectifs -> 100) : </p>
+        <br>
+        <progress id="progress-bar" value="{{ counter }}" max="100"></progress>
+
     </div>
 </body>
 <footer>
@@ -26,20 +33,31 @@
     function add() {
         $.post("/add", function(data) {
             $("#counter").text(data);
+            $("#progress-bar").val(data);
         });
+        $("#thumbs-down").show().on('animationend', function() {
+        $(this).hide();
+        });
+
     }
 
     function subtract() {
         $.post("/subtract", function(data) {
             $("#counter").text(data);
+            $("#progress-bar").val(data);
+        });
+        $("#firework").show().on('animationend', function() {
+        $(this).hide();
         });
     }
 
     function updateCounter() {
     $.get("/get_counter", function(data) {
         $("#counter").text(data);
+        $("#progress-bar").val(data);
     });
     }
     setInterval(updateCounter, 1000);
+
 </script>
 </html>

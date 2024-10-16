@@ -58,3 +58,41 @@ footer {
     text-align: center;
     padding: 10px 0;
 }
+
+@keyframes thumbs-down-animation {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-20px); }
+}
+
+#thumbs-down {
+    font-size: 10em;
+    animation: thumbs-down-animation 1s ease-out;
+    position: absolute;
+    z-index: 1;
+}
+
+@keyframes firework-animation {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-20px); }
+}
+
+#firework {
+    font-size: 10em;
+    animation: firework-animation 1s ease-out;
+    position: absolute;
+    z-index: 1;
+}
+
+#progress-bar {
+    width: 20%;
+    height: 20px;
+    background-color: #f3f3f3;
+}
+
+#progress-bar::-webkit-progress-value {
+    background-color: #007BFF;
+}
+
+#progress-bar::-moz-progress-bar {
+    background-color: #007BFF;
+}
