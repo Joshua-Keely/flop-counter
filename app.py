@@ -11,16 +11,20 @@ def index():
 
 @app.route('/add', methods=['POST'])
 def add():
-    session['counter'] += 1
+    with open('value.txt', 'r') as f:
+        counter = int(f.read())
+    counter += 1
     with open('value.txt', 'w') as f:
-        f.write(str(session['counter']))
+        f.write(str(counter))
     return redirect(url_for('index'))
 
 @app.route('/subtract', methods=['POST'])
 def subtract():
-    session['counter'] -= 1
+    with open('value.txt', 'r') as f:
+        counter = int(f.read())
+    counter -= 1
     with open('value.txt', 'w') as f:
-        f.write(str(session['counter']))
+        f.write(str(counter))
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
