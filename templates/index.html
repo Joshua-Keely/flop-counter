@@ -3,14 +3,35 @@
 <head>
     <title>Flop Counter</title>
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <body>
     <h1>Bienvenue sur le Flop Counter</h1>
-    <h2>Counter: {{ counter }}</h2>
-    <form action="{{ url_for('add') }}" method="post">
+    <h2>Counter: <span id="counter">{{ counter }}</span></h2>
+    <form onsubmit="event.preventDefault(); add();">
         <input type="submit" value="Increase">
     </form>
-    <form action="{{ url_for('subtract') }}" method="post">
+    <form onsubmit="event.preventDefault(); subtract();">
         <input type="submit" value="Decrease">
     </form>
 </body>
+<script>
+    function add() {
+        $.post("/add", function(data) {
+            $("#counter").text(data);
+        });
+    }
+
+    function subtract() {
+        $.post("/subtract", function(data) {
+            $("#counter").text(data);
+        });
+    }
+
+    function updateCounter() {
+    $.get("/get_counter", function(data) {
+        $("#counter").text(data);
+    });
+    }
+    setInterval(updateCounter, 1000);
+</script>
 </html>
