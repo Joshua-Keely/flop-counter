@@ -35,8 +35,7 @@
             $("#counter").text(data);
             $("#progress-bar").val(data);
         });
-        $("#thumbs-down").show().on('animationend', function() {
-        $(this).hide();
+        $("#thumbs-down").show().on('animationend', function() {$(this).hide();
         });
 
     }
@@ -52,10 +51,10 @@
     }
 
     function updateCounter() {
-    $.get("/get_counter", function(data) {
-        $("#counter").text(data);
-        $("#progress-bar").val(data);
-    });
+        $.get("/get_counter", function(data) {
+            $("#counter").text(data);
+            $("#progress-bar").val(data);
+        });
     }
     setInterval(updateCounter, 1000);
 
